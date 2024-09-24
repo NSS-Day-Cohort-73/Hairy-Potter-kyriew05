@@ -1,10 +1,11 @@
 // Imports go first
 import { makePottery } from './potteryWheel.js'
 import { firePottery } from './kiln.js'
-import { toSellOrNotToSell, usePottery } from './potteryCatalog.js'
+import { toSellOrNotToSell} from './potteryCatalog.js'
+import { potteryList } from './potteryList.js'
 
 // Make 5 pieces of pottery at the wheel
-const mug = makePottery("mug", 1, 4)
+const mug = makePottery("mug", 1, 4) 
 const bowl = makePottery("bowl", 5, 6)
 const teapot = makePottery("teapot", 3, 6)
 const jar = makePottery("jar", 5, 12)
@@ -26,13 +27,19 @@ const firedPlatter = firePottery(platter, 1000)
 // console.log('Fired Platter', firedPlatter)
 
 // Determine which ones should be sold, and their price
-toSellOrNotToSell(mug)
-toSellOrNotToSell(bowl)
-toSellOrNotToSell(teapot)
-toSellOrNotToSell(jar)
-toSellOrNotToSell(platter)
+const soldMug = toSellOrNotToSell(firedMug)
+const soldBowl = toSellOrNotToSell(firedBowl)
+const soldTeapot = toSellOrNotToSell(firedTeapot)
+const soldJar = toSellOrNotToSell(firedJar)
+const soldPlatter = toSellOrNotToSell(firedPlatter)
 
-console.log('Pottery for sale:', usePottery())
+console.log('Pottery for sale:', soldMug)
+console.log('Pottery for sale:', soldBowl)
+console.log('Pottery for sale:', soldTeapot)
+console.log('Pottery for sale:', soldJar)
+console.log('Pottery for sale:', soldPlatter)
 
 // Invoke the component function that renders the HTML list
-
+const pottery = document.querySelector(".potteryList")
+const potteryHTML = potteryList()
+pottery.innerHTML = potteryHTML
